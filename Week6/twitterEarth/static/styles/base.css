@@ -1,0 +1,48 @@
+
+
+body
+{
+	margin: 0;
+ 	background-color: #000; 
+	padding: 0;
+	font-family: "Lucida Grande", Geneva, Verdana, Arial, sans-serif;
+	font-size:   12px;
+	line-height: 20px;
+	overflow: hidden;
+}
+
+
+#three
+{
+	position: absolute;
+	top:  50%;
+	left: 50%;
+	margin: -300px 0 0 -300px;
+	width:  600px;
+	height: 600px;
+}
+
+#header{
+color: white;
+position: absolute;
+top: 0;
+left: 440px;
+font-size: 30px;
+
+
+}
+#loveTwitter{
+
+margin-top: 100px;
+margin-left: 60px;
+height: 600px;
+width: 300px;
+background-color: #ba2c2b;
+color: white;
+opacity: .5;
+border-radius: 8px 8px 8px 8px;
+z-index: 30;
+
+
+
+}
