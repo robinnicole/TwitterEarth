@@ -11,22 +11,36 @@ $( document ).ready( function(){
 	
 
 
-
  	jQuery(function($){
+ 	
+		console.log('hit1');
         	$("#query").tweet({
-         	 avatar_size: 32,
+         	avatar_size: 102,
           	count: 4,
           	query: "love",
           	refresh_interval: 8,
-          	loading_text: "looking for LOVEPUPPIES…",
-          	template: function(t){ 
-          	var o = {};
-          	var str =  $([linkURLs(o.tweet_raw_text, o.entities)]).linkUser().linkHash()[0];
-          	return! str.replace(/\b(love|luv)\b/ig, "****$1******"); 
-        },
-        	});
+          	loading_text: "looking for LOVEPUPPIES…",  
+             
+        });
+        	
+      });
 
-    	});
+
+ 	//jQuery(function($){
+        	//$("#query").tweet({
+         	 //avatar_size: 32,
+          	//count: 4,
+          	//query: "love",
+          //	refresh_interval: 8,
+          	//loading_text: "looking for LOVEPUPPIES…",
+          	//template: function(t){ 
+          	//var o = {};
+          	//var str =  $([linkURLs(o.tweet_raw_text, o.entities)]).linkUser().linkHash()[0];
+          	//return! str.replace(/\b(love|luv)\b/ig, "****$1******"); 
+       // },
+        	//});
+
+    	//});
 
 
 	setupThree()
@@ -68,7 +82,7 @@ $( document ).ready( function(){
 	window.tweets        = []
 	window.tweetsIndex   = -1
 	window.timePerTweet  = (3).seconds()
-	window.tweetApiArmed = true
+	window.tweetApiArmed = false
 	
 	
 
@@ -116,7 +130,7 @@ $( document ).ready( function(){
 	window.clouds = new THREE.Mesh(
 		new THREE.SphereGeometry( earthRadius + 2, 32, 32 ),
 		new THREE.MeshLambertMaterial({ 
-			map: THREE.ImageUtils.loadTexture( 'media/WorldPeople.png' ),
+			map: THREE.ImageUtils.loadTexture( 'media/cloudsTexture.png' ),
 			transparent: true,
 			blending: THREE.CustomBlending,
 			blendSrc: THREE.SrcAlphaFactor,
@@ -250,8 +264,8 @@ function fetchTweets(){
 		dataType: 'jsonp',
 		success: function( data ){
 
-			console.log( 'Received the following data from Twitter:' )
-			console.log( data )
+			//console.log( 'Received the following data from Twitter:' )
+			//console.log( data )
 
 
 			//  If you check the console we’ve just ouput the Twitter data,

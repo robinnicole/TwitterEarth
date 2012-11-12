@@ -106,7 +106,7 @@ $( document ).ready( function(){
 	window.clouds = new THREE.Mesh(
 		new THREE.SphereGeometry( earthRadius + 2, 32, 32 ),
 		new THREE.MeshLambertMaterial({ 
-			map: THREE.ImageUtils.loadTexture( 'media/WorldPeople.png' ),
+			map: THREE.ImageUtils.loadTexture( 'media/cloudsTexture.png' ),
 			transparent: true,
 			blending: THREE.CustomBlending,
 			blendSrc: THREE.SrcAlphaFactor,
