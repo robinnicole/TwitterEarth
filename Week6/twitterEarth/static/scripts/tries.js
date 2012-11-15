@@ -11,6 +11,7 @@ $( document ).ready( function(){
 	
 
 
+
  	jQuery(function($){
  	
 		console.log('hit1');
@@ -19,28 +20,39 @@ $( document ).ready( function(){
           	count: 4,
           	query: "love",
           	refresh_interval: 8,
-          	loading_text: "looking for LOVEPUPPIES…",  
+          	loading_text: "looking for LOVEPUPPIES…", 
+
              
         });
         	
       });
 
+      
 
- 	//jQuery(function($){
-        	//$("#query").tweet({
-         	 //avatar_size: 32,
-          	//count: 4,
-          	//query: "love",
-          //	refresh_interval: 8,
-          	//loading_text: "looking for LOVEPUPPIES…",
-          	//template: function(t){ 
-          	//var o = {};
-          	//var str =  $([linkURLs(o.tweet_raw_text, o.entities)]).linkUser().linkHash()[0];
-          	//return! str.replace(/\b(love|luv)\b/ig, "****$1******"); 
-       // },
-        	//});
 
-    	//});
+        jQuery(function($){
+        $("#query2").tweet({
+          page: 1,
+          query: "feelings",
+          avatar_size: 32,
+          count: 1,
+          loading_text: "loading ..."
+        }).bind("loaded", function() {
+          var ul = $(this).find(".tweet_list");
+          var ticker = function() {
+            setTimeout(function() {
+              ul.find('li:first').animate( {marginTop: '-4em'}, 500, function() {
+                $(this).detach().appendTo(ul).removeAttr('style');
+              });
+              ticker();
+            }, 5000);
+          };
+          ticker();
+        });
+      });
+
+
+
 
 
 	setupThree()
@@ -82,7 +94,7 @@ $( document ).ready( function(){
 	window.tweets        = []
 	window.tweetsIndex   = -1
 	window.timePerTweet  = (3).seconds()
-	window.tweetApiArmed = false
+	window.tweetApiArmed = true
 	
 	
 
@@ -142,6 +154,8 @@ $( document ).ready( function(){
 	clouds.receiveShadow = true
 	clouds.castShadow = true
 	earthGroup.add( clouds )
+	
+
 
 
 	//  Working with latitude and longitude can be tricky at first
@@ -196,7 +210,13 @@ $( document ).ready( function(){
 
 	//  Finally, we add our group of objects to the Scene.
 
-	scene.add( earthGroup )
+	scene.add(earthGroup);
+
+	
+	
+
+	
+
 
 
 	//  But also, did you want to start out looking at a different part of
@@ -229,7 +249,8 @@ $( document ).ready( function(){
 })
 
 
-
+$('.loveFade').fadeIn('slow');
+console.log('faded')
 
 function fetchTweets(){
 
@@ -497,7 +518,7 @@ function dropPin( latitude, longitude, color ){
 
 function render(){
 
-	renderer.render( scene, camera )
+	renderer.render( scene, camera)
 }
 
 
@@ -521,6 +542,7 @@ function surfacePlot( params ){
 
 	return new THREE.Vector3( x, y, z )
 }
+
 
 
 
@@ -566,7 +588,7 @@ function setupThree(){
 	//  of our Camera.
 	
 	window.renderer = new THREE.WebGLRenderer({ antialias: true })
-	//window.renderer = new THREE.CanvasRenderer({ antialias: true })
+	window.renderer = new THREE.CanvasRenderer({ antialias: true })
 	renderer.setSize( WIDTH, HEIGHT )
 	renderer.shadowMapEnabled = true
 	renderer.shadowMapSoft = true

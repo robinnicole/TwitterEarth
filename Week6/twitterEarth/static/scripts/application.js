@@ -300,6 +300,12 @@ function fetchTweets(){
 }
 
 
+var shape = new THREE.TextGeometry(o.tweet_text, {font: 'helvetiker', size: 10, height: 1});
+window.words = new THREE.Mesh(shape, new THREE.MeshBasicMaterial( { color: 0xffffff, side: THREE.DoubleSide } ));
+words.position.z = 150
+words.position.x = -50
+words.posx = -100
+scene.add(words)
 
 
 function locateWithGoogleMaps( text ){	

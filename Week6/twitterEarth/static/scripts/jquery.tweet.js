@@ -181,6 +181,8 @@
       o.name = item.from_user_name || item.user.name;
       o.retweet = typeof(item.retweeted_status) != 'undefined';
 
+
+
       o.tweet_time = parse_date(item.created_at);
       o.join_text = s.join_text == "auto" ? build_auto_join_text(item.text) : s.join_text;
       o.tweet_id = item.id_str;
@@ -194,11 +196,11 @@
       o.tweet_relative_time = format_relative_time(extract_relative_time(o.tweet_time));
       o.entities = item.entities ? (item.entities.urls || []).concat(item.entities.media || []) : [];
       o.tweet_raw_text = o.retweet ? ('RT @'+o.retweeted_screen_name+' '+item.retweeted_status.text) : item.text; // avoid '...' in long retweets
-      var tweet_text = $([linkURLs(o.tweet_raw_text, o.entities)]).linkUser().linkHash()[0];
-	console.log('tweet_text: ' + tweet_text);
-	var replaced = tweet_text.replace(/\b(love|luv)\b/ig, "<span style= color:red font-weight: bold font-size: 32px>LOVE</span>");
-	console.log('replaced: ' + replaced);
-      o.tweet_text = replaced;      
+      o.tweet_raw_text = o.retweet ? ('RT @'+o.retweeted_screen_name+' '+item.retweeted_status.text) : item.text; // avoid '...' in long retweets
+      	var tweet_text = $([linkURLs(o.tweet_raw_text, o.entities)]).linkUser().linkHash()[0];
+		console.log('tweet_text: ' + tweet_text);
+		var replaced = tweet_text.replace(/\b(love|luv)\b/ig, "<span class='loveFade' style= 'color:red; font-family:comic-sans; font-weight:bold; font-size:x-large'>LOVE</span>");   
+       o.tweet_text = replaced; 
       o.retweeted_tweet_text = $([linkURLs(item.text, o.entities)]).linkUser().linkHash()[0];
       o.tweet_text_fancy = $([o.tweet_text]).makeHeart()[0];
 
